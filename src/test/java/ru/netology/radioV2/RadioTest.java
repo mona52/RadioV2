@@ -11,7 +11,7 @@ class RadioTest {
         Radio radio = new Radio();
         int currentChannel = 10;
         int expected = 0;
-        int actual = radio.SelectionChannel(currentChannel, radio.getMaxChannel(), radio.getMinChannel());
+        int actual = radio.plusChannel(currentChannel, radio.getMaxChannel(), radio.getMinChannel());
         assertEquals(expected, actual);
     }
 
@@ -20,16 +20,7 @@ class RadioTest {
         Radio radio = new Radio();
         int currentChannel = -1;
         int expected = 9;
-        int actual = radio.SelectionChannel(currentChannel, radio.getMaxChannel(), radio.getMinChannel());
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void selectionChannelNormal() {
-        Radio radio = new Radio();
-        int currentChannel = 5;
-        int expected = 5;
-        int actual = radio.SelectionChannel(currentChannel, radio.getMaxChannel(), radio.getMinChannel());
+        int actual = radio.minusChannel(currentChannel, radio.getMaxChannel(), radio.getMinChannel());
         assertEquals(expected, actual);
     }
 
@@ -39,7 +30,7 @@ class RadioTest {
         Radio radio = new Radio();
         int currentVolume = 11;
         int expected = 10;
-        int actual = radio.SelectionVolume(currentVolume, radio.getMaxVolume(), radio.getMinVolume());
+        int actual = radio.plusVolume(currentVolume, radio.getMaxVolume(), radio.getMinVolume());
         assertEquals(expected, actual);
     }
 
@@ -48,16 +39,9 @@ class RadioTest {
         Radio radio = new Radio();
         int currentVolume = -1;
         int expected = 0;
-        int actual = radio.SelectionVolume(currentVolume, radio.getMaxVolume(), radio.getMinVolume());
+        int actual = radio.minusVolume(currentVolume, radio.getMaxVolume(), radio.getMinVolume());
         assertEquals(expected, actual);
     }
 
-    @Test
-    void selectionVolumeNormal() {
-        Radio radio = new Radio();
-        int currentVolume = 7;
-        int expected = 7;
-        int actual = radio.SelectionVolume(currentVolume, radio.getMaxVolume(), radio.getMinVolume());
-        assertEquals(expected, actual);
-    }
+
 }

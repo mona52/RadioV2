@@ -5,8 +5,8 @@ public class Radio {
     private int minChannel = 0;
     private int maxVolume = 10;
     private int minVolume = 0;
-    private int currentChannel = 5;
-    private int currentVolume = 7;
+    private int currentChannel;
+    private int currentVolume;
     private boolean on;
 
     public int getMaxChannel() {
@@ -39,57 +39,90 @@ public class Radio {
 
 
     public void setCurrentChannel(int currentChannel) {
+        if (currentChannel > maxChannel) {
+            return;
+        }
+        if (currentChannel < minChannel) {
+            return;
+        }
         this.currentChannel = currentChannel;
     }
 
     public void setCurrentVolume(int currentVolume) {
+        if (currentVolume > maxVolume) {
+            return;
+        }
+        if (currentVolume < minVolume) {
+            return;
+        }
         this.currentVolume = currentVolume;
     }
 
-
     public static void main(String[] args) {
         Radio radio = new Radio();
-        int currentChannel1 = radio.SelectionChannel(radio.getCurrentChannel(), radio.getMaxChannel(), radio.getMinChannel());
-        int currentVolume1 = radio.SelectionVolume(radio.getCurrentVolume(), radio.getMaxVolume(), radio.getMinVolume());
-        radio.setCurrentChannel(currentChannel1);
-        radio.setCurrentVolume(currentVolume1);
+        radio.setCurrentChannel(5);
+        radio.setCurrentVolume(7);
 
+        int channelPlus = radio.plusChannel(radio.getCurrentChannel(), radio.getMaxChannel(), radio.getMinChannel());
+        radio.setCurrentChannel(channelPlus);
         System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
         System.out.println("Установлен уровень звука - " + radio.getCurrentVolume());
 
+        int channelMinus = radio.minusChannel(radio.getCurrentChannel(), radio.getMaxChannel(), radio.getMinChannel());
+        radio.setCurrentChannel(channelMinus);
+        System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
+        System.out.println("Установлен уровень звука - " + radio.getCurrentVolume());
+
+        int volumePlus = radio.plusVolume(radio.getCurrentVolume(), radio.getMaxVolume(), radio.getMinVolume());
+        radio.setCurrentVolume(volumePlus);
+        System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
+        System.out.println("Установлен уровень звука - " + radio.getCurrentVolume());
+
+        int volumeMinus = radio.minusVolume(radio.getCurrentVolume(), radio.getMaxVolume(), radio.getMinVolume());
+        radio.setCurrentVolume(volumeMinus);
+        System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
+        System.out.println("Установлен уровень звука - " + radio.getCurrentVolume());
     }
 
 
-    // выбор радиоканала
-    public int SelectionChannel(int currentChannel, int maxChannel, int minChannel) {
-        int currentChannel1 = currentChannel;
-        // если пользователь выбрал канал, следующим за 9-м (максимальным),
-        // то присваиваем переменной currentChannel минимальное значение
-        if (currentChannel > maxChannel) {
+
+    // +1 радиоканал
+    public int plusChannel(int currentChannel, int maxChannel, int minChannel) {
+        int currentChannel1 = currentChannel+1;
+
+        if (currentChannel1 > maxChannel) {
             currentChannel1 = minChannel;
         }
-        // если пользователь выбрал канал, предстоящим перед 0-м (минимальным),
-        // то присваиваем переменной currentChannel максимальное значение
-        if (currentChannel < minChannel) {
+        return currentChannel1;
+    }
+
+    // -1 радиоканал
+    public int minusChannel(int currentChannel, int maxChannel, int minChannel) {
+        int currentChannel1 = currentChannel-1;
+
+        if (currentChannel1 < minChannel) {
             currentChannel1 = maxChannel;
         }
         return currentChannel1;
     }
 
-    // регулировка громкости
-    public int SelectionVolume(int currentVolume, int maxVolume, int minVolume) {
-        int currentVolume1 = currentVolume;
+    // +1 уровень звука
+    public int plusVolume (int currentVolume, int maxVolume, int minVolume) {
+        int currentVolume1 = currentVolume+1;
 
-        // если пользователь выбрал уровень звука выше максимального, то оставляем максимальное значение
-        if (currentVolume > maxVolume) {
-            currentVolume1 = maxVolume;
+        if (currentVolume1 > maxVolume) {
+            currentVolume1 = currentVolume;
         }
+        return currentVolume1;
+    }
 
-        // если пользователь выбрал уровень звука ниже минимального, то оставляем минимальное значение
-        if (currentVolume < minVolume) {
-            currentVolume1 = minVolume;
+    // -1 уровень звука
+    public int minusVolume (int currentVolume, int maxVolume, int minVolume) {
+        int currentVolume1 = currentVolume-1;
+
+        if (currentVolume1 < minVolume) {
+            currentVolume1 = currentVolume;
         }
-
         return currentVolume1;
     }
 }
