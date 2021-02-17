@@ -111,7 +111,7 @@ public class Radio {
         int currentVolume1 = currentVolume+1;
 
         if (currentVolume1 > maxVolume) {
-            currentVolume1 = currentVolume;
+            currentVolume1 = maxVolume;
         }
         return currentVolume1;
     }
@@ -121,7 +121,7 @@ public class Radio {
         int currentVolume1 = currentVolume-1;
 
         if (currentVolume1 < minVolume) {
-            currentVolume1 = currentVolume;
+            currentVolume1 = minVolume;
         }
         return currentVolume1;
     }
