@@ -7,7 +7,6 @@ public class Radio {
     private int minVolume = 0;
     private int currentChannel;
     private int currentVolume;
-    private boolean on;
 
     public int getMaxChannel() {
         return maxChannel;
@@ -33,9 +32,6 @@ public class Radio {
         return currentVolume;
     }
 
-    public boolean isOn() {
-        return on;
-    }
 
 
     public void setCurrentChannel(int currentChannel) {
