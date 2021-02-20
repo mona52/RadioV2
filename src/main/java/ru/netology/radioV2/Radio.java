@@ -33,7 +33,6 @@ public class Radio {
     }
 
 
-
     public void setCurrentChannel(int currentChannel) {
         if (currentChannel > maxChannel) {
             return;
@@ -59,66 +58,54 @@ public class Radio {
         radio.setCurrentChannel(5);
         radio.setCurrentVolume(7);
 
-        int channelPlus = radio.plusChannel(radio.getCurrentChannel(), radio.getMaxChannel(), radio.getMinChannel());
-        radio.setCurrentChannel(channelPlus);
+        radio.plusChannel();
         System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
+
+        radio.minusChannel();
+        System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
+
+        radio.plusVolume();
         System.out.println("Установлен уровень звука - " + radio.getCurrentVolume());
 
-        int channelMinus = radio.minusChannel(radio.getCurrentChannel(), radio.getMaxChannel(), radio.getMinChannel());
-        radio.setCurrentChannel(channelMinus);
-        System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
-        System.out.println("Установлен уровень звука - " + radio.getCurrentVolume());
-
-        int volumePlus = radio.plusVolume(radio.getCurrentVolume(), radio.getMaxVolume(), radio.getMinVolume());
-        radio.setCurrentVolume(volumePlus);
-        System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
-        System.out.println("Установлен уровень звука - " + radio.getCurrentVolume());
-
-        int volumeMinus = radio.minusVolume(radio.getCurrentVolume(), radio.getMaxVolume(), radio.getMinVolume());
-        radio.setCurrentVolume(volumeMinus);
-        System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
+        radio.minusVolume();
         System.out.println("Установлен уровень звука - " + radio.getCurrentVolume());
     }
-
 
 
     // +1 радиоканал
-    public int plusChannel(int currentChannel, int maxChannel, int minChannel) {
-        int currentChannel1 = currentChannel+1;
-
-        if (currentChannel1 > maxChannel) {
-            currentChannel1 = minChannel;
+    public void plusChannel() {
+        if (getCurrentChannel() >= maxChannel) {
+            setCurrentChannel(minChannel);
+        } else {
+            setCurrentChannel(getCurrentChannel() + 1);
         }
-        return currentChannel1;
     }
 
     // -1 радиоканал
-    public int minusChannel(int currentChannel, int maxChannel, int minChannel) {
-        int currentChannel1 = currentChannel-1;
-
-        if (currentChannel1 < minChannel) {
-            currentChannel1 = maxChannel;
+    public void minusChannel() {
+        if (getCurrentChannel() <= minChannel) {
+            setCurrentChannel(maxChannel);
+        } else {
+            setCurrentChannel(getCurrentChannel() - 1);
         }
-        return currentChannel1;
     }
 
     // +1 уровень звука
-    public int plusVolume (int currentVolume, int maxVolume, int minVolume) {
-        int currentVolume1 = currentVolume+1;
-
-        if (currentVolume1 > maxVolume) {
-            currentVolume1 = maxVolume;
+    public void plusVolume() {
+        if (getCurrentVolume() >= maxVolume) {
+            setCurrentVolume(maxVolume);
+        } else {
+            setCurrentVolume(getCurrentVolume() + 1);
         }
-        return currentVolume1;
     }
 
-    // -1 уровень звука
-    public int minusVolume (int currentVolume, int maxVolume, int minVolume) {
-        int currentVolume1 = currentVolume-1;
 
-        if (currentVolume1 < minVolume) {
-            currentVolume1 = minVolume;
+    // -1 уровень звука
+    public void minusVolume() {
+        if (getCurrentVolume() <= minVolume) {
+            setCurrentVolume(minVolume);
+        } else {
+            setCurrentVolume(getCurrentVolume() - 1);
         }
-        return currentVolume1;
     }
 }
