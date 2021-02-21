@@ -8,7 +8,8 @@ public class Radio {
     private int currentChannel;
     private int currentVolume;
 
-    public Radio(int currentChannel, int currentVolume) {
+    public Radio(int maxChannel, int currentChannel, int currentVolume) {
+        this.maxChannel = maxChannel;
         this.currentChannel = currentChannel;
         this.currentVolume = currentVolume;
     }
@@ -64,11 +65,14 @@ public class Radio {
         this.currentVolume = currentVolume;
     }
 
+    public void setMaxChannel(int maxChannel) {
+        this.maxChannel = maxChannel;
+    }
 
 
     public static void main(String[] args) {
-        Radio radio = new Radio(5,7);
-
+        Radio radio = new Radio(10,5,7);
+        radio.setMaxChannel(radio.maxChannel);
         radio.plusChannel();
         System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
 
