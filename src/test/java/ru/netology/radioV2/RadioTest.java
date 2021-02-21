@@ -8,8 +8,7 @@ class RadioTest {
 
     @Test
     void plusChannelMax() {
-        Radio radio = new Radio();
-        radio.setCurrentChannel(9);
+        Radio radio = new Radio(9,0,100,0,9,7);
         int expected = 0;
         radio.plusChannel();
         assertEquals(expected, radio.getCurrentChannel());
@@ -17,8 +16,7 @@ class RadioTest {
 
     @Test
     void plusChannelNormal() {
-        Radio radio = new Radio();
-        radio.setCurrentChannel(5);
+        Radio radio = new Radio (9,0,100,0,5,7);
         int expected = 6;
         radio.plusChannel();
         assertEquals(expected, radio.getCurrentChannel());
@@ -27,8 +25,7 @@ class RadioTest {
 
     @Test
     void minusChannelMin() {
-        Radio radio = new Radio();
-        radio.setCurrentChannel(0);
+        Radio radio = new Radio(9,0,100,0,0,7);
         int expected = 9;
         radio.minusChannel();
         assertEquals(expected, radio.getCurrentChannel());
@@ -36,8 +33,7 @@ class RadioTest {
 
     @Test
     void minusChannelNormal() {
-        Radio radio = new Radio();
-        radio.setCurrentChannel(7);
+        Radio radio = new Radio(9,0,100,0,7,7);
         int expected = 6;
         radio.minusChannel();
         assertEquals(expected, radio.getCurrentChannel());
@@ -45,17 +41,15 @@ class RadioTest {
 
     @Test
     void plusVolumeMax() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(10);
-        int expected = 10;
+        Radio radio = new Radio(9,0,100,0,5,100);
+        int expected = 100;
         radio.plusVolume();
         assertEquals(expected, radio.getCurrentVolume());
     }
 
     @Test
     void plusVolumeNormal() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(8);
+        Radio radio = new Radio(9,0,100,0,5,8);
         int expected = 9;
         radio.plusVolume();
         assertEquals(expected, radio.getCurrentVolume());
@@ -63,8 +57,7 @@ class RadioTest {
 
     @Test
     void minusVolumeMin() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(0);
+        Radio radio = new Radio(9,0,100,0,5,0);
         int expected = 0;
         radio.minusVolume();
         assertEquals(expected, radio.getCurrentVolume());
@@ -72,8 +65,7 @@ class RadioTest {
 
     @Test
     void minusVolumeNormal() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(9);
+        Radio radio = new Radio(9,0,100,0,5,9);
         int expected = 8;
         radio.minusVolume();
         assertEquals(expected, radio.getCurrentVolume());
@@ -83,7 +75,7 @@ class RadioTest {
     @Test
     void setCurrentChannelUpperMax() {
         Radio radio = new Radio();
-        radio.setCurrentChannel(10);
+        radio.setCurrentChannel(100);
         int expected = 0;
         assertEquals(expected, radio.getCurrentChannel());
     }
@@ -107,7 +99,7 @@ class RadioTest {
     @Test
     void setCurrentVolumeUpperMax() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(11);
+        radio.setCurrentVolume(101);
         int expected = 0;
         assertEquals(expected, radio.getCurrentVolume());
     }

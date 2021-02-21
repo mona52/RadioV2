@@ -1,37 +1,22 @@
 package ru.netology.radioV2;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Data;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+
+
 public class Radio {
-    private int maxChannel = 9;
-    private int minChannel = 0;
-    private int maxVolume = 10;
-    private int minVolume = 0;
-    private int currentChannel;
-    private int currentVolume;
 
-    public int getMaxChannel() {
-        return maxChannel;
-    }
-
-    public int getMinChannel() {
-        return minChannel;
-    }
-
-    public int getMaxVolume() {
-        return maxVolume;
-    }
-
-    public int getMinVolume() {
-        return minVolume;
-    }
-
-    public int getCurrentChannel() {
-        return currentChannel;
-    }
-
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
+   private int maxChannel = 9;
+   private int minChannel = 0;
+   private int maxVolume = 100;
+   private int minVolume = 0;
+   private int currentChannel;
+   private int currentVolume;
 
     public void setCurrentChannel(int currentChannel) {
         if (currentChannel > maxChannel) {
@@ -54,9 +39,7 @@ public class Radio {
     }
 
     public static void main(String[] args) {
-        Radio radio = new Radio();
-        radio.setCurrentChannel(5);
-        radio.setCurrentVolume(7);
+        Radio radio = new Radio(9,0,100,0,5,7);
 
         radio.plusChannel();
         System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
