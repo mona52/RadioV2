@@ -3,10 +3,21 @@ package ru.netology.radioV2;
 public class Radio {
     private int maxChannel = 9;
     private int minChannel = 0;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
     private int minVolume = 0;
     private int currentChannel;
     private int currentVolume;
+
+    public Radio(int currentChannel, int currentVolume) {
+        this.currentChannel = currentChannel;
+        this.currentVolume = currentVolume;
+    }
+
+
+    public Radio() {
+    }
+
+
 
     public int getMaxChannel() {
         return maxChannel;
@@ -53,10 +64,10 @@ public class Radio {
         this.currentVolume = currentVolume;
     }
 
+
+
     public static void main(String[] args) {
-        Radio radio = new Radio();
-        radio.setCurrentChannel(5);
-        radio.setCurrentVolume(7);
+        Radio radio = new Radio(5,7);
 
         radio.plusChannel();
         System.out.println("Выбран радиоканал № " + radio.getCurrentChannel());
