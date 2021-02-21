@@ -8,7 +8,7 @@ class RadioTest {
 
     @Test
     void plusChannelMax() {
-        Radio radio = new Radio(9,7);
+        Radio radio = new Radio(9,0,100,0,9,7);
         int expected = 0;
         radio.plusChannel();
         assertEquals(expected, radio.getCurrentChannel());
@@ -16,7 +16,7 @@ class RadioTest {
 
     @Test
     void plusChannelNormal() {
-        Radio radio = new Radio (5,7);
+        Radio radio = new Radio (9,0,100,0,5,7);
         int expected = 6;
         radio.plusChannel();
         assertEquals(expected, radio.getCurrentChannel());
@@ -25,7 +25,7 @@ class RadioTest {
 
     @Test
     void minusChannelMin() {
-        Radio radio = new Radio(0,7);
+        Radio radio = new Radio(9,0,100,0,0,7);
         int expected = 9;
         radio.minusChannel();
         assertEquals(expected, radio.getCurrentChannel());
@@ -33,7 +33,7 @@ class RadioTest {
 
     @Test
     void minusChannelNormal() {
-        Radio radio = new Radio(7,7);
+        Radio radio = new Radio(9,0,100,0,7,7);
         int expected = 6;
         radio.minusChannel();
         assertEquals(expected, radio.getCurrentChannel());
@@ -41,7 +41,7 @@ class RadioTest {
 
     @Test
     void plusVolumeMax() {
-        Radio radio = new Radio(5,100);
+        Radio radio = new Radio(9,0,100,0,5,100);
         int expected = 100;
         radio.plusVolume();
         assertEquals(expected, radio.getCurrentVolume());
@@ -49,7 +49,7 @@ class RadioTest {
 
     @Test
     void plusVolumeNormal() {
-        Radio radio = new Radio(5,8);
+        Radio radio = new Radio(9,0,100,0,5,8);
         int expected = 9;
         radio.plusVolume();
         assertEquals(expected, radio.getCurrentVolume());
@@ -57,7 +57,7 @@ class RadioTest {
 
     @Test
     void minusVolumeMin() {
-        Radio radio = new Radio(5,0);
+        Radio radio = new Radio(9,0,100,0,5,0);
         int expected = 0;
         radio.minusVolume();
         assertEquals(expected, radio.getCurrentVolume());
@@ -65,7 +65,7 @@ class RadioTest {
 
     @Test
     void minusVolumeNormal() {
-        Radio radio = new Radio(5,9);
+        Radio radio = new Radio(9,0,100,0,5,9);
         int expected = 8;
         radio.minusVolume();
         assertEquals(expected, radio.getCurrentVolume());
